@@ -5,6 +5,7 @@ const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for express config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -42,7 +43,7 @@ app.get("/help", (req, res) => {
 
 app.get("/weather", (req, res) => {
   if (!req.query.address) {
-    res.send({ error: "piss off poof" });
+    res.send({ error: "no good." });
   }
   if (req.query.address) {
     geocode(
@@ -90,21 +91,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server up on port 3000.");
+app.listen(port, () => {
+  console.log("Server up on port " + port);
 });
-
-// DELETE
-// // quick little geocode/forecast - no error handling
-// geocode("boston", (geocodeError, { latitude, location, longitude } = {}) => {
-//   //if proceeds based on truthy return of a response value
-//   if (longitude) {
-//     console.log(location);
-//     // I think longitude and latitude are confused in source function maybe
-//     forecast(latitude, longitude, (forecastError, forecastResponse) => {
-//       if (forecastResponse) {
-//         console.log(forecastResponse);
-//       }
-//     });
-//   }
-// });

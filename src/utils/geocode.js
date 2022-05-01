@@ -23,7 +23,7 @@ const geocode = (locationName, callback) => {
     }
 
     if (features.length === 0) {
-      callback(`fuck you jerk`, undefined);
+      callback(`no good.`, undefined);
       return;
     }
 
