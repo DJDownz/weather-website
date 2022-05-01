@@ -1,3 +1,4 @@
+const { response } = require("express");
 const request = require("request");
 
 //forecast notes
@@ -22,7 +23,7 @@ const forecast = (longitude, latitude, callback) => {
     const { error: responseError, current: responseBodyCurrent } = body;
 
     if (responseError) {
-      callback(`fuck you jerk:`, undefined);
+      callback(`no good.:`, undefined);
       console.log(responseError);
 
       return;
@@ -31,7 +32,7 @@ const forecast = (longitude, latitude, callback) => {
     if (!responseError) {
       callback(
         undefined,
-        `${responseBodyCurrent.weather_descriptions[0]}. It is currently ${responseBodyCurrent.temperature} degrees. It feels like ${responseBodyCurrent.feelslike} degrees.`
+        `${responseBodyCurrent.weather_descriptions[0]}. It is currently ${responseBodyCurrent.temperature} degrees. It feels like ${responseBodyCurrent.feelslike} degrees. Humidity is ${responseBodyCurrent.humidity}%.`
       );
       return;
     }
